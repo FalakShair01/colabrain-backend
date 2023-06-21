@@ -1,17 +1,19 @@
-# 
-FROM python:3.9
+FROM python:3.11-slim-buster
 
-# 
-WORKDIR /code
+# Set the working directory in the container
+WORKDIR /app
 
-# 
-COPY ./requirements.txt /code/requirements.txt
+# Copy the requirements file to the container
+COPY requirements.txt .
 
-# 
-RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
+# Install dependencies
+RUN pip install -r requirements.txt
 
-# 
-COPY ./colabrain-backend /code/colabrain-backend
+# Copy the rest of the project files to the container
+COPY . .
 
-# 
-CMD ["uvicorn", "colabrain-backend.main:app", "--host", "0.0.0.0", "--port", "80"]
+# Expose the port that the application will be running on
+EXPOSE 8000
+
+# Run the application
+CMD ["uvicorn", "app:main"]
