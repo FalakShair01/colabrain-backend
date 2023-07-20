@@ -10,9 +10,11 @@ class Company(Base):
     __tablename__ = "company"
 
     id = Column(Integer, primary_key=True, index=True)
-    name = Column(String)
+    username = Column(String)
+    company_name = Column(String)
     email = Column(String, unique=True)
-    password = String(String)
+    password = Column(String)
+    phone = Column(String)
     role = Column(String, default='comapny')
     is_active = Column(Boolean, default=True)
 
@@ -26,9 +28,10 @@ class Employee(Base):
     __tablename__ = "employees"
 
     id = Column(Integer, primary_key=True, index=True)
-    username = Column(String)
+    name = Column(String)
     email = Column(String, unique=True)
-    password = String(String)
+    password = Column(String)
+    phone = Column(String)
     role = Column(String, default='employee')
     is_active = Column(Boolean, default=True)
 
